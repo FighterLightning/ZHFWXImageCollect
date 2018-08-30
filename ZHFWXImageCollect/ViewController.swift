@@ -34,6 +34,9 @@ extension ViewController
         view.addSubview(tableView)
         //1. 设置tableView 的frame
         tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
+        //保证cell高度自适应
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 300
         //2. 设置代理
         tableView.delegate = self
         tableView.dataSource = self
