@@ -1,4 +1,5 @@
 # ZHFWXImageCollect
+![](./ZHFWXImageCollect/1.gif)
 这是一个tableView与collectionView组合而成的demo，类似微信朋友圈浏览的部分功能，欢迎下载使用
  使用说明：《首先声明本项目是Swift项目》
 1》引进OC第三方：SDWebImage，MLPhotoBrowser，DACircularProgress。这三个第三方主要实现图片点击浏览缩放功能，及图片保存功能。
