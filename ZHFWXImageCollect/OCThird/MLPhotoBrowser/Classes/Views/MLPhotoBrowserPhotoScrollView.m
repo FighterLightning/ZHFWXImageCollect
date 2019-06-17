@@ -137,7 +137,7 @@ static NSInteger const ZLPickerProgressViewH = 50;
         NSRange photoRange = [photo.photoURL.absoluteString rangeOfString:@"assets-library"];
         if (photoRange.location != NSNotFound){
             [[MLPhotoBrowserDatas defaultPicker] getAssetsPhotoWithURL:photo.photoURL callBack:^(UIImage *obj) {
-                _photoImageView.image = obj;
+                self->_photoImageView.image = obj;
                 [weakSelf displayImage];
             }];
         }else{
@@ -152,9 +152,11 @@ static NSInteger const ZLPickerProgressViewH = 50;
             _photoImageView.frame = [self setMaxMinZoomScalesForCurrentBounds:_photoImageView];
             
             // 网络URL
-            [_photoImageView sd_setImageWithURL:photo.photoURL placeholderImage:thumbImage options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                self.progress = (double)receivedSize / expectedSize;
-            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+           
+            
+            [_photoImageView sd_setImageWithURL:photo.photoURL placeholderImage:thumbImage options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                 self.progress = (double)receivedSize / expectedSize;
+            } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
                 _photoImageView.image = image;
                 [weakSelf displayImage];
             }];

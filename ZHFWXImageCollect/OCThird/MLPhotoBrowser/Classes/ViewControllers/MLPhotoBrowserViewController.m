@@ -142,13 +142,16 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 }
 
 #pragma mark - Life cycle
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+//- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
+//    NSAssert(self.dataSource, @"你没成为数据源代理");
+//    [self showToView];
+//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     NSAssert(self.dataSource, @"你没成为数据源代理");
-    
     [self showToView];
 }
-
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -234,7 +237,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
 }
 
 - (NSInteger) collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return [self.dataSource photoBrowser:self numberOfItemsInSection:self.currentIndexPath.section];
+    return self.photos.count; // [self.dataSource photoBrowser:self numberOfItemsInSection:self.currentIndexPath.section];
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -243,7 +246,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     
     if (self.photos.count) {
         cell.backgroundColor = [UIColor clearColor];
-        MLPhotoBrowserPhoto *photo = self.photos[indexPath.item]; //[self.dataSource photoBrowser:self photoAtIndex:indexPath.item];
+        MLPhotoBrowserPhoto *photo = self.photos[indexPath.item];// [self.dataSource photoBrowser:self photoAtIndex:indexPath.item];
         
         if([[cell.contentView.subviews lastObject] isKindOfClass:[UIView class]]){
             [[cell.contentView.subviews lastObject] removeFromSuperview];
@@ -371,7 +374,6 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
             [self.photos removeAllObjects];
         }else{
             [self.photos removeObjectAtIndex:self.currentPage];
-
         }
         
         if (self.currentPage >= self.photos.count) {
@@ -452,6 +454,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
     
     __weak typeof(self)weakSelf = self;
     self.disMissBlock = ^(NSInteger page){
+        imageView.layer.masksToBounds = YES;
         mainView.hidden = NO;
         mainView.alpha = 1.0;
         CGRect originalFrame = CGRectZero;
@@ -465,8 +468,7 @@ static CGFloat const ZLPickerColletionViewPadding = 20;
             UIImageView *toImageView2 = (UIImageView *)[[weakSelf.dataSource photoBrowser:weakSelf photoAtIndexPath:[NSIndexPath indexPathForItem:page inSection:weakSelf.currentIndexPath.section]] toView];
             originalFrame = [toImageView2.superview convertRect:toImageView2.frame toView:[weakSelf getParsentView:toImageView2]];
         }
-        
-        [UIView animateWithDuration:0.25 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             if (weakSelf.status == UIViewAnimationAnimationStatusFade){
                 imageView.alpha = 0.0;
                 mainView.alpha = 0.0;
