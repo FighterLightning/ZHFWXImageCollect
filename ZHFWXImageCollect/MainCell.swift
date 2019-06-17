@@ -70,7 +70,7 @@ class MainCell: UITableViewCell {
             collectionView.dataSource = self
             collectionView.delegate = self
             //设置collectionView的内边距
-            collectionView.contentInset = UIEdgeInsetsMake(edgeMargin, edgeMargin, 0, edgeMargin)
+            collectionView.contentInset = UIEdgeInsets(top: edgeMargin, left: edgeMargin, bottom: 0, right: edgeMargin)
            // UIApplication.shared.keyWindow?.addSubview()
             collectionView.reloadData()
         }
@@ -107,7 +107,7 @@ extension MainCell :UICollectionViewDataSource,UICollectionViewDelegate,MLPhotoB
         // 数据源
         photoBrowser.dataSource = self
         // 当前选中的值
-        photoBrowser.currentIndexPath = NSIndexPath.init(item: indexRow, section: 0) as IndexPath!
+        photoBrowser.currentIndexPath = NSIndexPath.init(item: indexRow, section: 0) as IndexPath?
         // 展示控制器
         photoBrowser.show()
     }

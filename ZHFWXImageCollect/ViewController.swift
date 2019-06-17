@@ -35,7 +35,7 @@ extension ViewController
         //1. 设置tableView 的frame
         tableView.frame = CGRect.init(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight)
         //保证cell高度自适应
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
         //2. 设置代理
         tableView.delegate = self
@@ -88,7 +88,7 @@ extension ViewController :UITableViewDataSource,UITableViewDelegate
         //此处要用var
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentity) as! MainCell
         let mainModel:MainModel  = self.dataMarr[indexPath.row] as! MainModel;
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.mainModel = mainModel
         cell.images = mainModel.pics
         return cell

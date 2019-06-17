@@ -548,7 +548,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Lighting.comm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xin/Desktop/九宫格预览/ZHFWXImageCollect/ZHFWXImageCollect-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -566,7 +566,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Lighting.comm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/xin/Desktop/九宫格预览/ZHFWXImageCollect/ZHFWXImageCollect-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
